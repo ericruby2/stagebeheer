@@ -1,0 +1,37 @@
+-# THis file is in app/views/companys/show.html.haml
+%h2 Details voor #{@company.name}
+
+%ul#details
+	%li
+		Naam:
+		= @company.name
+	%li
+		Adres:
+		= @company.adress
+	%li 
+		Woonplaats: 
+		= @company.city
+	%li 
+		Activiteit: 
+		= @company.activity	
+	%li 
+		Abn: 
+		= @company.abn	
+	%li 
+		Ecabo: 
+		= @company.ecabo	
+	%li 
+		email: 
+		= @company.email
+	%li 
+		Opmerkingen: 
+		= @company.comment						
+
+= link_to "Wijzigen Bedrijfsinfo" , edit_company_path(@company)
+|
+
+%td= link_to "Verwijder Bedrijf" , company_path(@company), class: 'btn btn-danger btn-xs', :method => :delete ,data: {confirm: "Weet u het zeker? "}
+|
+= link_to "Terug naar Bedrijvenlijst", companies_path
+|
+

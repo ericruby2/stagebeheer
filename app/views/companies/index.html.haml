@@ -1,0 +1,16 @@
+-# This file is in app/views/movies/index.html.haml
+= link_to "Bedrijf toevoegen" , new_company_path, class: 'btn btn-succes'			
+%h3 Alle Bedrijven
+
+%table{:class => 'table-class table-condensed table-bordered'}
+	%thead 
+		%tr 
+			%th Naam 
+			%th Woonplaats
+			%th Abn
+			%th Ecabo
+	%tbody
+		-#debugger
+		=render :partial=>'company', :collection=>@companies
+
+

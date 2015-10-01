@@ -1,0 +1,12 @@
+-# This file is in app/views/movies/new.html.haml
+%h2 Create New Company
+
+= form_tag companies_path, :method => :post do
+
+	= render :partial => 'company_form'
+	
+	= submit_tag 'Save Changes'
+	
+-#= link_to "Back to movie list", movies_path
+
+

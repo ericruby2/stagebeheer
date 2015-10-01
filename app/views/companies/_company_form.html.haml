@@ -1,0 +1,37 @@
+-# this is the partial
+
+- unless !@company || @company.errors.empty?
+	#warning
+		Errors prevented this company from being #{controller.action_name}d:
+		%ul
+			- @company.errors.full_messages.each do |error|
+				%li= error
+
+= label :company, :name, 'Naam'
+= text_field :company, :name 
+	
+= label :company, :adress, 'Adres'
+= text_field :company, :adress 
+
+= label :company, :zip, 'Postcode'
+= text_field :company, :zip 
+
+= label :company, :city, 'Woonplaats'
+= text_field :company, :city 
+
+= label :company, :abn, 'ABN'
+= text_field :company, :abn 
+
+= label :company, :ecabo, 'Ecabo'
+= text_field :company, :ecabo 
+
+= label :company, :activity, 'Activiteit'
+= text_field :company, :activity 
+
+= label :company, :email, 'Email'
+= text_field :company, :email 
+
+= label :company, :comment, 'Opmerkingen'
+= text_field :company, :comment 
+
+

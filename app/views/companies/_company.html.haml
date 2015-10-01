@@ -1,0 +1,10 @@
+-#debugger
+- # Single row of all companies table
+%tr
+	%td=company.name
+	%td=company.city
+	%td=company.abn
+	%td=company.ecabo
+	%td= link_to "Details voor #{company.name}", company_path(company),  class: 'btn btn-primary btn-xs'
+	%td= link_to "Wijzig info" , edit_company_path(company), class: 'btn btn-info btn-xs' 
+	%td= link_to "Verwijder Bedrijf" , company_path(company), class: 'btn btn-danger btn-xs', :method => :delete ,data: {confirm: "Are you sure? "}
