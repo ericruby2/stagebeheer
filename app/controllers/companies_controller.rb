@@ -1,6 +1,18 @@
 class CompaniesController < ApplicationController
   def index
-  	@companies =  Company.all
+  	if !params[:sortarg].nil?
+			@sortarg = params[:sortarg]
+			session[:sortarg] = @sortarg
+#		@fromsess = false
+		else
+			@sortarg = session[:sortarg]
+#		@fromsess= true
+		end
+  	@companies =  Company.order(@sortarg)
+  	@name_class = (@sortarg == "name" ? "hilite" : nil)
+		@city_class = (@sortarg == "city" ? "hilite" : nil)
+		@Abn_class = (@sortarg == "Abn" ? "hilite" : nil)
+	
   end
   def show
     id = params[:id] # retrieve company ID from URI route

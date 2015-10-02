@@ -5,9 +5,9 @@
 %table{:class => 'table-class table-condensed table-bordered'}
 	%thead 
 		%tr 
-			%th Naam 
-			%th Woonplaats
-			%th Abn
+			%th{:class => @name_class}= link_to "Naam", companies_path()+"/sort/name", :id => "name_header"
+			%th{:class => @city_class}= link_to "Woonplaats", companies_path()+"/sort/city", :id => "city_header"
+			%th{:class => @Abn_class}= link_to "Abn", companies_path()+"/sort/Abn", :id => "Abn_header"
 			%th Ecabo
 	%tbody
 		-#debugger
