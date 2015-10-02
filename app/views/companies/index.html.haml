@@ -7,7 +7,9 @@
 		%tr 
 			%th{:class => @name_class}= link_to "Naam", companies_path()+"/sort/name", :id => "name_header"
 			%th{:class => @city_class}= link_to "Woonplaats", companies_path()+"/sort/city", :id => "city_header"
-			%th{:class => @Abn_class}= link_to "Abn", companies_path()+"/sort/Abn", :id => "Abn_header"
+			%th App
+			%th Beh
+			%th Net
 			%th Ecabo
 	%tbody
 		-#debugger
