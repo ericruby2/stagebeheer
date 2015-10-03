@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
   def index
+  	@all_selections=Company.all_selections
   	if !params[:sortarg].nil?
 			@sortarg = params[:sortarg]
 			session[:sortarg] = @sortarg
@@ -11,7 +12,35 @@ class CompaniesController < ApplicationController
   	@companies =  Company.order(@sortarg)
   	@name_class = (@sortarg == "name" ? "hilite" : nil)
 		@city_class = (@sortarg == "city" ? "hilite" : nil)
-		@Abn_class = (@sortarg == "Abn" ? "hilite" : nil)
+		@appCheck = true
+		@selected = Hash.new
+	if !params["selections"].nil? 
+		@selected = params["selections"]
+		session[:selections]= params["selections"]
+		@fromsess ||= false
+	else 
+		@selected = session[:selections]
+		@fromsess ||= true
+	end
+	if @selected == nil
+
+		@full_selected = @all_selections.collect { |v| [v,1]} 
+		@selected =Hash[@full_selected]
+	end
+	#debugger
+	if  params[:id] == nil
+				@companies = []
+				@selected.each do |s|
+					Company.where(s[0] => :true).each do |record|
+						@companies << record
+					end
+				end
+	    	@companies = @companies.uniq.sort_by { |hsh| hsh[@sortarg] }
+	  
+		@full_selected = @all_selections.collect { |v| [v,1] }
+		@selected = Hash[@full_selected]
+
+	end	
 	
   end
   def show

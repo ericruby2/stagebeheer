@@ -1,18 +1,27 @@
--# This file is in app/views/movies/index.html.haml
-= link_to "Bedrijf toevoegen" , new_company_path, class: 'btn btn-succes'			
-%h3 Alle Bedrijven
+-# This file is in app/views/companies/index.html.haml
+= link_to "Bedrijf toevoegen" , new_company_path, class: 'btn btn-succes'     
+= form_tag companies_path, :id => "selections_form", :method => :get do 
+  Include:
+  - @all_selections.each do |selection|
+    = selection
+    -if @selected.has_key?(selection) == true
+      = check_box_tag "selections[#{selection}]",1,true, :id => selection.to_s
+    -else
+      = check_box_tag "selections[#{selection}]", :id => selection.to_s
+  = submit_tag 'Refresh', :id => "selections_submit"
 
 %table{:class => 'table-class table-condensed table-bordered'}
-	%thead 
-		%tr 
-			%th{:class => @name_class}= link_to "Naam", companies_path()+"/sort/name", :id => "name_header"
-			%th{:class => @city_class}= link_to "Woonplaats", companies_path()+"/sort/city", :id => "city_header"
-			%th App
-			%th Beh
-			%th Net
-			%th Ecabo
-	%tbody
-		-#debugger
-		=render :partial=>'company', :collection=>@companies
+  %thead 
+    %tr 
+      %th{:class => @name_class}= link_to "Naam", companies_path()+"/sort/name", :id => "name_header"
+      %th{:class => @city_class}= link_to "Woonplaats", companies_path()+"/sort/city", :id => "city_header"
+      
+      %th App
+      %th Beh
+      %th Net
+      %th Ecabo
+  %tbody
+    -#debugger
+    =render :partial=>'company', :collection=>@companies
 
 

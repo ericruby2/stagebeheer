@@ -1,13 +1,12 @@
 -#debugger
 - # Single row of all companies table
 %tr
-	%td=company.name
-	%td=company.city
-	%div{class: 'true'}
-		%td= check_box_tag "#{company.applicatie}", 1, company.applicatie, disabled: true
-		%td= check_box_tag "#{company.beheer}", 1, company.beheer, disabled: true
-		%td= check_box_tag "#{company.netwerk}", 1, company.netwerk, disabled: true
-		%td= check_box_tag "#{company.ecabo}", 1, company.ecabo, disabled: true
-	%td= link_to "Details voor #{company.name}", company_path(company),  class: 'btn btn-primary btn-xs'
-	%td= link_to "Wijzig info" , edit_company_path(company), class: 'btn btn-info btn-xs' 
-	%td= link_to "Verwijder Bedrijf" , company_path(company), class: 'btn btn-danger btn-xs', :method => :delete ,data: {confirm: "Are you sure? "}
+  %td=company.name
+  %td=company.city
+  %td= check_box_tag "#{company.applicatie}", 1, company.applicatie, disabled: true
+  %td= check_box_tag "#{company.beheer}", 1, company.beheer, disabled: true
+  %td= check_box_tag "#{company.netwerk}", 1, company.netwerk, disabled: true
+  %td= check_box_tag "#{company.ecabo}", 1, company.ecabo, disabled: true
+  %td= link_to "Details voor #{company.name}", company_path(company),  class: 'btn btn-primary btn-xs'
+  %td= link_to "Wijzig info" , edit_company_path(company), class: 'btn btn-info btn-xs' 
+  %td= link_to "Verwijder Bedrijf" , company_path(company), class: 'btn btn-danger btn-xs', :method => :delete ,data: {confirm: "Are you sure? "}
