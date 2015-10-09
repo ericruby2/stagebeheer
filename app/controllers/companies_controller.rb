@@ -27,7 +27,7 @@ class CompaniesController < ApplicationController
 		@full_selected = @all_selections.collect { |v| [v,1]} 
 		@selected =Hash[@full_selected]
 	end
-	#debugger
+	
 	if  params[:id] == nil
 				@companies = []
 				@selected.each do |s|
@@ -35,13 +35,17 @@ class CompaniesController < ApplicationController
 						@companies << record
 					end
 				end
+				Company.no_type.each do |c|
+					@companies << c
+				end
+#debugger
 	    	@companies = @companies.uniq.sort_by { |hsh| hsh[@sortarg] }
 	  
 		@full_selected = @all_selections.collect { |v| [v,1] }
-		@selected = Hash[@full_selected]
+		#@selected = Hash[@full_selected]
 
 	end	
-	
+	#debugger
   end
   def show
     id = params[:id] # retrieve company ID from URI route

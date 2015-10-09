@@ -10,6 +10,7 @@
       = check_box_tag "selections[#{selection}]", :id => selection.to_s
   = submit_tag 'Refresh', :id => "selections_submit"
 
+  = @companies.count
 %table{:class => 'table-class table-condensed table-bordered'}
   %thead 
     %tr 
