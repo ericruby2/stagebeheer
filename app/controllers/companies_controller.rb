@@ -31,13 +31,19 @@ class CompaniesController < ApplicationController
 	if  params[:id] == nil
 				@companies = []
 				@selected.each do |s|
-					Company.where(s[0] => :true).each do |record|
-						@companies << record
+#					debugger
+					if s[0] == "blanco"
+						Company.no_type.each do |c|
+							@companies << c
+						end	
+					else
+
+						Company.where(s[0] => :true).each do |record|
+							@companies << record
+						end
 					end
-				end
-				Company.no_type.each do |c|
-					@companies << c
-				end
+	end
+				
 #debugger
 	    	@companies = @companies.uniq.sort_by { |hsh| hsh[@sortarg] }
 	  
