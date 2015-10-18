@@ -1,6 +1,6 @@
 require 'csv'    
 
-CSV.foreach('Bedrijven5.csv', :headers => true) do |row|
+CSV.foreach('Stagiairs.csv', :headers => true) do |row|
   puts row
-  Company.create!(Hash[row], :without_protection => true)
+  Stagiair.create!(Hash[row], :without_protection => true)
 end
