@@ -8,6 +8,13 @@
       = check_box_tag "selections[#{selection}]",1,true, :id => selection.to_s
     -else
       = check_box_tag "selections[#{selection}]", :id => selection.to_s
+  Ecabo
+  chk 
+  = radio_button_tag "Ecabo", "check"
+  not
+  = radio_button_tag "Ecabo", "nocheck"
+  all
+  = radio_button_tag "Ecabo", "all", true
   = submit_tag 'Refresh', :id => "selections_submit"
 
   = @companies.count
