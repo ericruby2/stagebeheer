@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
   def index
+#  	debugger
   	@all_selections=Company.all_selections
   	if !params[:sortarg].nil?
 			@sortarg = params[:sortarg]
@@ -27,11 +28,11 @@ class CompaniesController < ApplicationController
 		@full_selected = @all_selections.collect { |v| [v,1]} 
 		@selected =Hash[@full_selected]
 	end
-	
+#					debugger	
 	if  params[:id] == nil
 				@companies = []
 				@selected.each do |s|
-#					debugger
+
 					if s[0] == "blanco"
 						Company.no_type.each do |c|
 							@companies << c
@@ -42,10 +43,22 @@ class CompaniesController < ApplicationController
 							@companies << record
 						end
 					end
+
 	end
+
+	if params[:ecabo] == nil ; params[:ecabo] = "all" ; end
+#		debugger
+	if !(params[:ecabo] == "all")
+		if params[:ecabo] == "nee"
+			@companies.reject!{ |c| c.ecabo}
+		else
+			@companies.reject!{ |c| !c.ecabo}
+		end
+	end
+
 				
 #debugger
-	    	@companies = @companies.uniq.sort_by { |hsh| hsh[@sortarg] }
+	  @companies = @companies.uniq.sort_by { |hsh| hsh[@sortarg] }
 	  
 		@full_selected = @all_selections.collect { |v| [v,1] }
 		#@selected = Hash[@full_selected]

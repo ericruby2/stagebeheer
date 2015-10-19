@@ -8,6 +8,7 @@
 		= csrf_meta_tags
 
 	%body
+		%h2{:class => 'text-uppercase text-center'} Stages bij ICT Academie Haarlem
 		- if flash[:notice]
 			#notice.message= flash[:notice]
 		- elsif flash[:warning]

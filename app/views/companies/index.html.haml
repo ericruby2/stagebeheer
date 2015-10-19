@@ -1,25 +1,35 @@
 -# This file is in app/views/companies/index.html.haml
-= link_to "Bedrijf toevoegen" , new_company_path, class: 'btn btn-succes'     
-= form_tag companies_path, :id => "selections_form", :method => :get do 
-  Include:
-  - @all_selections.each do |selection|
-    = selection
-    -if @selected.has_key?(selection) == true
-      = check_box_tag "selections[#{selection}]",1,true, :id => selection.to_s
-    -else
-      = check_box_tag "selections[#{selection}]", :id => selection.to_s
-  Ecabo
-  chk 
-  = radio_button_tag "Ecabo", "check"
-  not
-  = radio_button_tag "Ecabo", "nocheck"
-  all
-  = radio_button_tag "Ecabo", "all", true
-  = submit_tag 'Refresh', :id => "selections_submit"
 
+%p{:class => 'text-center'} 
+  aantal bedrijven :
   = @companies.count
-%table{:class => 'table-class table-condensed table-bordered'}
-  %thead 
+  = link_to "Bedrijf toevoegen" , new_company_path, class: 'btn btn-primary btn-xs' 
+= form_tag companies_path, :id => "selections_form", :method => :get do
+  %div{:class => 'bluebox bg-info pull-left'} 
+    Inclusief:
+    - @all_selections.each do |selection|
+      = selection
+      -if @selected.has_key?(selection) == true
+        = check_box_tag "selections[#{selection}]",1,true, :id => selection.to_s
+      -else
+        = check_box_tag "selections[#{selection}]", :id => selection.to_s
+  -#debugger
+  
+  %div{:class => 'ecabox bg-warning pull-left'} 
+    Ecabo:
+    all
+    = radio_button_tag "ecabo", "all", (params[:ecabo] == "all"), :class=> 'ecabox'
+    ja 
+    = radio_button_tag "ecabo", "ja", (params[:ecabo] == "ja"), :class=> 'ecabox'
+    nee
+    = radio_button_tag "ecabo", "nee", (params[:ecabo] == "nee" ), :class=> 'ecabox'
+    
+  = submit_tag 'Refresh', :id => "selections_submit"
+    
+
+  
+%table{:class => 'table-class table-condensed table-bordered table-striped table-responsive'}
+  %thead
     %tr 
       %th{:class => @name_class}= link_to "Naam", companies_path()+"/sort/name", :id => "name_header"
       %th{:class => @city_class}= link_to "Woonplaats", companies_path()+"/sort/city", :id => "city_header"
