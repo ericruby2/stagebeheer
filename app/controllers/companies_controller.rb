@@ -28,12 +28,13 @@ class CompaniesController < ApplicationController
 		@full_selected = @all_selections.collect { |v| [v,1]} 
 		@selected =Hash[@full_selected]
 	end
-#					debugger	
+
 	if  params[:id] == nil
 				@companies = []
 				@selected.each do |s|
-
-					if s[0] == "blanco"
+		#debugger
+					if s[0].to_s == "blanco"
+				
 						Company.no_type.each do |c|
 							@companies << c
 						end	
